@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зогсоо Хайрхан - Захиалга</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f59e0b">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="lang-selector">
+            <select id="lang-select" onchange="changeLanguage(this.value)">
+                <option value="mn">Монгол</option>
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+            </select>
+        </div>
+        <div class="logo" id="logo-text">ЗОГСОО ХАЙРХАН</div>
+        <p id="sub-text">Зоогийн газар</p>
+    </header>
+
+    <div class="container">
+        <h2 id="menu-title">🍴 Манай Цэс</h2>
+        <div id="menu-display">
+            <!-- JavaScript-ээр ачаалагдана -->
+        </div>
+    </div>
+
+    <div id="cart-window" class="cart-window">
+        <div class="cart-window-header">
+            <h3 id="cart-title">🛒 Таны сагс</h3>
+            <button class="btn-close" onclick="toggleCart()">✖</button>
+        </div>
+
+        <div id="cart-items-list">
+            <div class="empty-cart" id="empty-cart-text">Сагс хоосон байна</div>
+        </div>
+
+        <div class="sidebar-bottom-section">
+            <div class="cart-total-sidebar">
+                <span id="total-text">Нийт</span>: <strong id="total-amount">0</strong> ₮
+            </div>
+            <div class="coming-soon-btn" id="coming-soon-msg">Тун удахгүй...</div>
+
+            <div class="contact-info-sidebar">
+                <p>📞 <span id="footer-phone">Утас</span>: <strong>86839090</strong></p>
+                <p>🕒 <span id="footer-schedule">Цагийн хуваарь</span>: <strong>09:00 - 21:00</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <button class="btn-floating-cart" onclick="toggleCart()">
+        <span class="count-badge" id="cart-count">0</span>
+        🛒
+    </button>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
